@@ -1,0 +1,6 @@
+DirectoryIndex dashboard.php
+# حماية ملف قاعدة البيانات من التحميل الخارجي (أمان عالٍ)
+<Files "database.sqlite">
+    Order Allow,Deny
+    Deny from all
+</Files>
