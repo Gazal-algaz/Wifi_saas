@@ -1,3 +1,7 @@
-body { font-family: sans-serif; background: #f4f4f4; text-align: center; padding: 50px; }
-.card { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); display: inline-block; }
-button { background: #28a745; color: white; padding: 15px 30px; border: none; border-radius: 5px; cursor: pointer; font-size: 18px; }
+:root { --primary-color: #4a90e2; --bg-color: #f8f9fa; }
+body { font-family: 'Segoe UI', Tahoma, sans-serif; background-color: var(--bg-color); margin: 0; padding: 20px; text-align: center; }
+.container { max-width: 500px; margin: 50px auto; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+h1 { color: #333; }
+.btn { display: inline-block; background: var(--primary-color); color: white; padding: 15px 30px; border-radius: 8px; text-decoration: none; font-weight: bold; margin-top: 20px; transition: 0.3s; }
+.btn:hover { background: #357abd; }
+.card-code { background: #e7f3ff; border: 2px dashed var(--primary-color); padding: 20px; margin: 20px 0; border-radius: 10px; font-size: 1.5rem; color: var(--primary-color); }
