@@ -1,15 +1,13 @@
 <?php
-require_once 'final_test.php';
+$db = new PDO('sqlite:database.sqlite');
+$stmt = $db->query("SELECT * FROM vouchers WHERE status='available' LIMIT 1");
+$voucher = $stmt->fetch();
 
-// ضع بياناتك هنا (استخدم مفاتيحك الخاصة)
-$botToken = "YOUR_TELEGRAM_BOT_TOKEN";
-$chatId = "YOUR_CHAT_ID";
-
-// استقبال الطلب من صفحة index.php
-$buyerPhone = $_POST['phone'] ?? 'غير معروف';
-
-// إرسال إشعار فوري لك
-$message = "🔔 طلب شراء جديد!\nرقم العميل: $buyerPhone\nالسعر: 500 ريال\n\n- اضغط هنا لتأكيد التسليم...";
-file_get_contents("https://api.telegram.org/bot$botToken/sendMessage?chat_id=$chatId&text=" . urlencode($message));
-
-echo "تم استلام طلبك بنجاح! سيتم إرسال الكرت فور تأكيد التحويل المالي.";
+if ($voucher) {
+    // حجز الكرت فوراً
+    $db->prepare("UPDATE vouchers SET status='sold' WHERE id=?")->execute([$voucher['id']]);
+    echo "<h1>تم الشراء بنجاح!</h1><p>الكود الخاص بك هو: " . $voucher['code'] . "</p>";
+} else {
+    echo "<h1>عذراً، لا توجد كروت متاحة حالياً.</h1>";
+}
+?>
